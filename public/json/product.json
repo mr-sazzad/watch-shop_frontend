@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Haylou LS02 Smartwatch",
+    "image": "https://ctrl.wizven.com/storage/media/JY1PCc9UjxFYS275IbsFuEYiRkG4uyIojKFx8jyS.png",
+    "price": 39.99,
+    "status": "inStock",
+    "rating": 4.4,
+    "description": "The Haylou LS02 is an affordable smartwatch with a variety of features to track your daily activities and health. It has a 1.4-inch color touch screen and supports multiple sports modes for monitoring workouts. The watch includes a heart rate monitor, sleep tracker, and sedentary reminder. It also provides notifications for calls, messages, and app alerts from your smartphone. The Haylou LS02 is compatible with Android and iOS devices, and its long battery life ensures extended usage without frequent charging.",
+    "comments": [
+      {
+        "userName": "JohnDoe",
+        "comment": "Great budget-friendly smartwatch."
+      },
+      {
+        "userName": "JaneSmith",
+        "comment": "I like the design and the display quality."
+      }
+    ]
+  }
+]
