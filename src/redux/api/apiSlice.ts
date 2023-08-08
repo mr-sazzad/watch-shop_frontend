@@ -12,6 +12,18 @@ export const api = createApi({
       query: () => "/watches/recent",
     }),
 
+    getSingleWatch: build.query({
+      query: (id) => `/watches/${id}`,
+    }),
+
+    addToCart: build.mutation({
+      query: (data) => ({
+        url: "/users/sign-up",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
     createUser: build.mutation({
       query: (data) => ({
         url: "/users/sign-up",
@@ -35,4 +47,5 @@ export const {
   useGetRecentWatchesQuery,
   useCreateUserMutation,
   useLoginUserMutation,
+  useGetSingleWatchQuery,
 } = api;

@@ -37,7 +37,7 @@ const WatchCard: React.FC<{ watch: IWatch }> = ({ watch }) => {
                 To Cart
               </button>
               <Link
-                href="/details"
+                href={`/details/${watch._id}`}
                 className="py-2 px-3 bg-indigo-400 hover:bg-indigo-500 rounded text-white text-xs font-medium"
               >
                 Details
