@@ -1,4 +1,6 @@
 import RootLayout from "@/components/layout/RootLayout";
+import CommentBox from "@/components/ui/CommentBox";
+import Reviews from "@/components/ui/Reviews";
 import { useGetSingleWatchQuery } from "@/redux/api/apiSlice";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -8,14 +10,9 @@ const Details = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, isLoading } = useGetSingleWatchQuery(id);
+  const { data } = useGetSingleWatchQuery(id);
 
   const watch = data?.data;
-  console.log(watch);
-
-  if (isLoading) {
-    <p>Loading ... </p>;
-  }
 
   return (
     <div className="mt-16">
@@ -87,21 +84,23 @@ const Details = () => {
             className="tracking-widest 
               text-lg
               title-font
-              font-medium
-              text-white
-              bg-indigo-500
+              font-normal
+             ring-1
+             ring-inset
+             ring-indigo-300
               mb-1
               px-3
               py-1
-              rounded-lg
+              rounded
               "
           >
-            📑 REVIEWS 📑
+            REVIEWS SECTION
           </h3>
         </div>
 
-        {/* reviews part will be start soon */}
+        <CommentBox />
       </div>
+      <Reviews />
     </div>
   );
 };

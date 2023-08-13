@@ -16,9 +16,13 @@ export const api = createApi({
       query: (id) => `/watches/${id}`,
     }),
 
-    addToCart: build.mutation({
-      query: (data) => ({
-        url: "/users/sign-up",
+    getWatchComments: build.query({
+      query: (id) => `/comment/${id}`,
+    }),
+
+    postAComment: build.mutation({
+      query: ({ id, data }) => ({
+        url: `/comment/${id}`,
         method: "POST",
         body: data,
       }),
@@ -48,4 +52,6 @@ export const {
   useCreateUserMutation,
   useLoginUserMutation,
   useGetSingleWatchQuery,
+  usePostACommentMutation,
+  useGetWatchCommentsQuery,
 } = api;
