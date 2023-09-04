@@ -10,7 +10,11 @@ const Details = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data } = useGetSingleWatchQuery(id);
+  console.log(id);
+
+  const { data } = useGetSingleWatchQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const watch = data?.data;
 

@@ -20,7 +20,7 @@ const Reviews = () => {
 
   return (
     <div className="mt-12">
-      {data.data.map((review: IReview) => (
+      {data?.data?.map((review: IReview) => (
         <div
           key={review._id}
           className="mt-8 px-4 lg:px-12 flex gap-2 items-center"

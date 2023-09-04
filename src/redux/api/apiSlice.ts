@@ -13,7 +13,7 @@ export const api = createApi({
     }),
 
     getSingleWatch: build.query({
-      query: (id) => `/watches/${id}`,
+      query: (id) => ({ url: `/watches/${id}`, method: "GET" }),
     }),
 
     getWatchComments: build.query({
