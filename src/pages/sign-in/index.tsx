@@ -3,6 +3,7 @@ import { useLoginUserMutation } from "@/redux/api/apiSlice";
 import { signUpData } from "@/types";
 import Cookies from "js-cookie";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { ReactElement, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
@@ -10,6 +11,7 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 
 const SignInPage = () => {
+  const router = useRouter();
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
 
@@ -50,6 +52,8 @@ const SignInPage = () => {
 
         setEmail("");
         setPassword("");
+
+        router.push("/");
       }
     } catch (err: any) {
       console.error("Login error:", err);

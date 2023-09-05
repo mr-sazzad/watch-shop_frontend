@@ -1,8 +1,20 @@
+import { GetCookie } from "@/hooks/getCurrentUser";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const api = createApi({
+export const api: any = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4001/api/v1" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:4001/api/v1",
+    prepareHeaders: (headers) => {
+      const token = GetCookie();
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      headers.set("Content-Type", "application/json"); // Adjust headers as needed
+      return headers;
+    },
+  }),
+
   endpoints: (build) => ({
     getAllWatches: build.query({
       query: () => "/watches",
@@ -45,11 +57,13 @@ export const api = createApi({
     }),
 
     getCurrentUser: build.query({
-      query: (data) => ({
+      query: () => ({
         url: "/users/current-user",
         method: "GET",
-        body: data,
       }),
+    }),
+    fetchCurrentUser: build.query({
+      query: () => "/users/current-user",
     }),
   }),
 });
@@ -63,4 +77,5 @@ export const {
   usePostACommentMutation,
   useGetWatchCommentsQuery,
   useGetCurrentUserQuery,
+  useFetchCurrentUserQuery,
 } = api;

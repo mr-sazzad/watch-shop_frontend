@@ -3,15 +3,9 @@ import Featured from "@/components/ui/Featured";
 import GoTo from "@/components/ui/GoTo";
 import Hero from "@/components/ui/Hero";
 import { useGetRecentWatchesQuery } from "@/redux/api/apiSlice";
-import Cookies from "js-cookie";
 import { ReactElement } from "react";
-
 export default function Home() {
   const { data } = useGetRecentWatchesQuery(undefined);
-
-  const token = Cookies.get("access_token");
-
-  console.log(token, "USER ");
 
   return (
     <div>
