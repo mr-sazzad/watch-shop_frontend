@@ -2,6 +2,7 @@ import RootLayout from "@/components/layout/RootLayout";
 import { useCreateUserMutation } from "@/redux/api/apiSlice";
 import { signUpData } from "@/types";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { ReactElement, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -13,6 +14,8 @@ const SignUpPage = () => {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [confirmPassword, setConfirmPassword] = useState("");
+
+  const router = useRouter();
 
   const handleEmailChange = (e: {
     target: { value: SetStateAction<string> };
@@ -30,7 +33,12 @@ const SignUpPage = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const isFilled = email !== "" && password !== "" && confirmPassword !== "";
+  const isFilled =
+    email !== "" &&
+    email.length > 10 &&
+    email.includes("@gmail.com") &&
+    password !== "" &&
+    confirmPassword !== "";
 
   const isMatched =
     isFilled && password === confirmPassword && password.length > 5;
@@ -49,6 +57,8 @@ const SignUpPage = () => {
       showConfirmButton: false,
       timer: 1500,
     });
+
+    router.push("/sign-in");
 
     setEmail("");
     setPassword("");

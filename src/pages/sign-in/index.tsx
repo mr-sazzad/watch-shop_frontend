@@ -1,6 +1,7 @@
 import RootLayout from "@/components/layout/RootLayout";
 import { useLoginUserMutation } from "@/redux/api/apiSlice";
 import { signUpData } from "@/types";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import { ReactElement, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -24,27 +25,46 @@ const SignInPage = () => {
   };
   const { handleSubmit } = useForm<signUpData>();
 
-  const [loginUser, { isSuccess, data }] = useLoginUserMutation();
+  const [loginUser, { isSuccess, data, error }] = useLoginUserMutation();
 
-  const onSubmit = () => {
-    const user = loginUser({ email, password });
+  const onSubmit = async () => {
+    try {
+      const user = await loginUser({ email, password });
 
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "Sign In Successfully !",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+      if (error) {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      } else if (user) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign In Successfully !",
+          showConfirmButton: true,
+          timer: 1500,
+        });
 
-    console.log(user);
-
-    setEmail("");
-    setPassword("");
+        setEmail("");
+        setPassword("");
+      }
+    } catch (err: any) {
+      console.error("Login error:", err);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Sign In Successfully !",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
 
   if (isSuccess) {
     console.log({ accessToken: data.accessToken });
+    Cookies.set("access_token:", data.accessToken);
   }
 
   return (
@@ -89,7 +109,7 @@ const SignInPage = () => {
                   <span className="label-text font-medium">Password</span>
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="password"
                   className="input input-bordered"
                   onChange={handlePasswordChange}

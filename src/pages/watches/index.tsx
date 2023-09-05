@@ -16,7 +16,7 @@ const WatchesPage = () => {
           # Watches Gallery
         </h2>
       </div>
-      <div className="flex flex-wrap justify-center px-4 md:px-12">
+      <div className="container mx-auto flex flex-wrap justify-center px-4 md:px-12">
         {watches?.data?.map((watch: IWatch) => (
           <WatchCard key={watch._id} watch={watch} />
         ))}
