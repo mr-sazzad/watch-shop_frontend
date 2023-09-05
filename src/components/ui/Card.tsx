@@ -4,8 +4,6 @@ import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 
 const Card: React.FC<{ watch: IWatch }> = ({ watch }) => {
-  console.log(watch);
-
   return (
     <div className="p-4 md:w-1/4">
       <div className="h-full border-2 border-gray-800 rounded-lg overflow-hidden">

@@ -25,13 +25,14 @@ const SignInPage = () => {
   };
   const { handleSubmit } = useForm<signUpData>();
 
-  const [loginUser, { isSuccess, data, error }] = useLoginUserMutation();
+  const [loginUser, { isSuccess, data, error, isError, reset }] =
+    useLoginUserMutation();
 
   const onSubmit = async () => {
     try {
       const user = await loginUser({ email, password });
 
-      if (error) {
+      if (error || !user || isError) {
         Swal.fire({
           position: "top-end",
           icon: "error",
@@ -43,7 +44,7 @@ const SignInPage = () => {
           position: "top-end",
           icon: "success",
           title: "Sign In Successfully !",
-          showConfirmButton: true,
+          showConfirmButton: false,
           timer: 1500,
         });
 
@@ -64,7 +65,7 @@ const SignInPage = () => {
 
   if (isSuccess) {
     console.log({ accessToken: data.accessToken });
-    Cookies.set("access_token:", data.accessToken);
+    Cookies.set("access_token", data.accessToken);
   }
 
   return (

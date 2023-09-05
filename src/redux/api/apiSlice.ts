@@ -43,6 +43,14 @@ export const api = createApi({
         body: data,
       }),
     }),
+
+    getCurrentUser: build.query({
+      query: (data) => ({
+        url: "/users/current-user",
+        method: "GET",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -54,4 +62,5 @@ export const {
   useGetSingleWatchQuery,
   usePostACommentMutation,
   useGetWatchCommentsQuery,
+  useGetCurrentUserQuery,
 } = api;
