@@ -4,7 +4,7 @@ import { ReactElement } from "react";
 
 const CartPage = () => {
   return (
-    <div className="mt-16 px-4 md:px-12">
+    <div className="mt-16 px-4 md:px-12 container mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-center">
         <Cart />
         <div className="flex justify-center items-center w-full">check out</div>

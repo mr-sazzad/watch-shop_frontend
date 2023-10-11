@@ -1,10 +1,35 @@
+import {
+  useAddToCartMutation,
+  useFetchCurrentUserQuery,
+} from "@/redux/api/apiSlice";
 import { IWatch } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 
 const WatchCard: React.FC<{ watch: IWatch }> = ({ watch }) => {
-  const handleAddToCart = () => {};
+  const { data } = useFetchCurrentUserQuery();
+
+  console.log(data);
+
+  const userId = data?.accessToken?._id;
+
+  console.log(userId, "TOKEN");
+
+  const [addToCart, { isLoading, isSuccess }] = useAddToCartMutation();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isSuccess) {
+    console.log("Success");
+  }
+
+  const handleAddToCart = (data: IWatch) => {
+    console.log(data);
+
+    addToCart({ userId, data });
+  };
 
   return (
     <div className="p-4 lg:w-1/4 md:w-1/3 sm:w-1/2 w-full">
@@ -78,7 +103,7 @@ const WatchCard: React.FC<{ watch: IWatch }> = ({ watch }) => {
                 text-xs
                 font-medium
               "
-                onClick={handleAddToCart}
+                onClick={() => handleAddToCart(watch)}
               >
                 To Cart
               </button>

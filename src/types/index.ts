@@ -14,3 +14,8 @@ export interface signUpData {
   password: string;
   confirmPassword: string;
 }
+
+export interface signInData {
+  email: string;
+  password: string;
+}

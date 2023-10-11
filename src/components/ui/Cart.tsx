@@ -27,7 +27,7 @@ const Cart = () => {
 
   return (
     <div className="w-full flex justify-center">
-      <div className="w-3/5">
+      <div className="w-full sm:w-4/5 md:w-4/5 lg:w-3/5">
         <h2 className="text-center py-5 tracking-widest text-lg font-semibold">
           Cart Products
         </h2>

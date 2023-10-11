@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactElement, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { RiErrorWarningLine } from "react-icons/ri";
@@ -14,6 +15,8 @@ const SignUpPage = () => {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [confirmPassword, setConfirmPassword] = useState("");
+
+  toast.error("something went wrong!");
 
   const router = useRouter();
 
@@ -45,20 +48,29 @@ const SignUpPage = () => {
 
   const { handleSubmit } = useForm<signUpData>();
 
-  const [createUser, _result] = useCreateUserMutation();
+  const [createUser, { error }] = useCreateUserMutation();
 
-  const onSubmit = () => {
-    createUser({ email, password });
+  const onSubmit = async () => {
+    try {
+      const res = await createUser({ email, password }).unwrap();
 
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "Sign Up Successfully !",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+      if (error) {
+        toast.error("something went wrong!");
+      } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign Up Successfully !",
+          showConfirmButton: false,
+          timer: 1500,
+        });
 
-    router.push("/sign-in");
+        router.push("/sign-in");
+      }
+    } catch (err) {
+      toast.error("something went wrong!");
+      console.error(err, "signUp Error");
+    }
 
     setEmail("");
     setPassword("");

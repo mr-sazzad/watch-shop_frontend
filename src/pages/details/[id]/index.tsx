@@ -19,7 +19,7 @@ const Details = () => {
   const watch = data?.data;
 
   return (
-    <div className="mt-16">
+    <div className="mt-16 container mx-auto">
       <div className="w-full h-40 mb-4 flex justify-center items-center bg-[url('https://www.apple.com/newsroom/images/product/watch/standard/Apple-Watch-Ultra-3up-hero-220907_Full-Bleed-Image.jpg.large.jpg')] object-cover bg-center relative">
         <div className=" absolute top-0 left-0 bottom-0 right-0 bg-white/50 backdrop-blur" />
         <h2 className="text-center text-2xl md:text-3xl py-6 font-semibold z-20">
