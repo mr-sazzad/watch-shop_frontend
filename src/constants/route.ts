@@ -23,7 +23,7 @@ export const useRoutes = () => {
       },
       {
         label: "Login",
-        href: "/login",
+        href: "/sign-in",
         icon: RiAccountCircleLine,
         active: pathname === "/login",
       },

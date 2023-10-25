@@ -108,7 +108,7 @@ const WatchCard: React.FC<{ watch: IWatch }> = ({ watch }) => {
                 To Cart
               </button>
               <Link
-                href={`/details/${watch._id}`}
+                href={`/details/${watch?._id}`}
                 className="
                   py-2 
                   px-3 

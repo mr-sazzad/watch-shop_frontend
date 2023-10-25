@@ -8,7 +8,7 @@ const DesktopMenuItem = () => {
       <ul className="flex gap-3 items-center">
         {routes.map((route) => (
           <li key={route.href}>
-            <Link href={route.href}>{route.label}</Link>
+            <Link href={route?.href}>{route.label}</Link>
           </li>
         ))}
       </ul>
